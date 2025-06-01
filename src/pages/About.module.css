@@ -1,0 +1,131 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h2 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+}
+
+.header span {
+  color: #4caf50;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.image {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.content {
+  text-align: center;
+  color: #333;
+}
+
+.welcome {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.subTitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 1rem;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.list li {
+  padding-left: 1.2rem;
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.list li::before {
+  content: '✔';
+  color: #4caf50;
+  position: absolute;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .header h2 {
+    font-size: 2rem;
+  }
+
+  .welcome {
+    font-size: 1.3rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    padding: 0 1rem;
+  }
+
+  .subTitle {
+    font-size: 1.2rem;
+  }
+
+  .list {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h2 {
+    font-size: 1.8rem;
+  }
+
+  .welcome {
+    font-size: 1.2rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .subTitle {
+    font-size: 1.1rem;
+  }
+
+  .list li {
+    font-size: 0.9rem;
+  }
+}

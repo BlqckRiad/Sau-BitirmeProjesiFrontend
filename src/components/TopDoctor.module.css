@@ -1,0 +1,115 @@
+.topDoctorsContainer {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .topDoctorsTitle {
+    font-size: 36px;
+    color: #1bad4e;
+    margin-bottom: 10px;
+  }
+  
+  .topDoctorsSubtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .doctorsGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+  }
+  
+  .doctorCard {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .doctorCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .doctorImage {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  .doctorInfo {
+    padding: 20px;
+  }
+  
+  .doctorStatus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .statusDot {
+    width: 10px;
+    height: 10px;
+    background-color: #1bad4e;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  .statusText {
+    color: #1bad4e;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .doctorName {
+    font-size: 20px;
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  .doctorSpeciality {
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .moreButtonWrapper {
+    margin-top: 20px;
+  }
+  
+  .moreButton {
+    background-color: #1bad4e;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .moreButton:hover {
+    background-color: #169c44;
+    transform: scale(1.05);
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

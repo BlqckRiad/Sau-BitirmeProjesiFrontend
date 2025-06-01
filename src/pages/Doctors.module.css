@@ -1,0 +1,229 @@
+/* .doctorCard {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 16px;
+    margin: 16px;
+    width: 90%;
+    text-align: center;
+  }
+  
+  .doctorCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .doctorImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  
+  .doctorInfo {
+    margin-top: 12px;
+  }
+  
+  .doctorStatus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  
+  .statusDot {
+    width: 10px;
+    height: 10px;
+    background-color: #4caf50; 
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+  
+  .statusText {
+    font-size: 14px;
+    color: #4caf50;
+  }
+  
+  .doctorName {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 6px 0;
+    color: #333;
+  }
+  
+  .doctorSpeciality {
+    font-size: 14px;
+    color: #777;
+  }
+
+  .doctorsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 4px;
+    margin-bottom: 40px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  } */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.doctorsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.doctorCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.doctorCard:hover {
+  transform: translateY(-5px);
+}
+
+.doctorImage {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+.doctorInfo {
+  padding: 1.5rem;
+}
+
+.doctorName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+
+.doctorSpecialty {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.doctorStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+}
+
+.statusText {
+  color: #4CAF50;
+  font-size: 0.9rem;
+}
+
+.filterSide {
+  width: 240px;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  margin-bottom: 2rem;
+}
+
+.filterSide h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.filterSide p {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #666;
+}
+
+.filterSide p:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.filterSide p.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .doctorsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .doctorsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .doctorImage {
+    height: 250px;
+  }
+
+  .filterSide {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .doctorsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .doctorImage {
+    height: 200px;
+  }
+
+  .doctorInfo {
+    padding: 1rem;
+  }
+
+  .doctorName {
+    font-size: 1.1rem;
+  }
+}
+  

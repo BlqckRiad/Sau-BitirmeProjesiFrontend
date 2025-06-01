@@ -1,0 +1,244 @@
+/* Navbar Container */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+  }
+  
+  /* Logo Section */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: auto;
+    z-index: 100;
+  }
+  .logo img{
+    width: 50px; /* or any size you prefer */
+    height: auto; /* keeps the aspect ratio */
+    border-radius: 50px;
+    cursor: pointer;
+  }
+
+  .logo a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  /* Navigation Links */
+  .navlist {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navItem {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .navItem:hover {
+    color: #1bad4e;
+  }
+  
+  /* Signup Button */
+  .signupButton {
+    padding: 0.5rem 1rem;
+    background-color:#1bad4e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .signupButton:hover {
+    background-color: #1bad4e;
+  }
+  
+  /* Profile Section */
+  .profileWrapper {
+    position: relative;
+  }
+  
+  .profileDropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .profilePic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #1bad4e;
+    margin-right: 8px;
+  }
+  
+  .dropdownIcon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Dropdown Menu */
+  .dropdownMenu {
+    display: block;
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem;
+    z-index: 10;
+    min-width: 150px;
+  }
+  
+ 
+  
+  .dropdownItem {
+    padding: 0.5rem 0;
+    color: #333;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .dropdownItem:hover {
+    color: #1bad4e;
+  }
+  
+  .logoutButton {
+    background: none;
+    border: none;
+    color: #333;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+  }
+  
+  .logoutButton:hover {
+    color: #1bad4e;
+  }
+  
+  /* Hamburger Menu */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  
+  .hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #333;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Mobile Menu */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+    }
+  
+    .navlist {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100vh;
+      background-color: white;
+      flex-direction: column;
+      padding: 80px 2rem 2rem;
+      transition: right 0.3s ease;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+      z-index: 99;
+    }
+  
+    .navlist.active {
+      right: 0;
+    }
+  
+    .navItem {
+      font-size: 1.1rem;
+      padding: 1rem 0;
+      width: 100%;
+      text-align: center;
+    }
+  
+    .signupButton {
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
+    }
+  
+    .profileWrapper {
+      margin-top: 1rem;
+    }
+  
+    .profile {
+      justify-content: center;
+    }
+  
+    .dropdownMenu {
+      position: static;
+      box-shadow: none;
+      border: none;
+      padding: 1rem 0;
+      margin-top: 1rem;
+    }
+  }
+  
+  /* Small Mobile Devices */
+  @media (max-width: 480px) {
+    .navbar {
+      padding: 1rem;
+    }
+  
+    .logo img {
+      width: 40px;
+    }
+  
+    .navlist {
+      width: 85%;
+    }
+  
+    .navItem {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Hamburger Animation */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+  

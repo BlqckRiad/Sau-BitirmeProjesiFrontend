@@ -1,0 +1,112 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  
+}
+
+
+.registrationContainer {
+  max-width: 400px;
+  margin: auto;
+  padding: 2rem;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  font-family: 'Segoe UI', sans-serif;
+
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.logo h2 {
+  color: #1bad4e;
+  margin-bottom: 0.3rem;
+}
+
+.registrationForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formGroup {
+  position: relative;
+}
+.formFooter p a{
+  color: #1bad4e;
+}
+
+.floating input {
+  width: 100%;
+  padding: 12px 12px 12px 38px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  transition: 0.3s ease;
+}
+
+.floating label {
+  position: absolute;
+  left: 38px;
+  top: 12px;
+  background: white;
+  padding: 0 5px;
+  font-size: 0.9rem;
+  color: #aaa;
+  transition: 0.2s;
+  pointer-events: none;
+}
+
+.floating input:focus + label,
+.floating input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 30px;
+  font-size: 0.7rem;
+  color: #1bad4e;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.submitButton {
+  background: #1bad4e;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submitButton:hover {
+  background: #1bad4e;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.animateShake {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
