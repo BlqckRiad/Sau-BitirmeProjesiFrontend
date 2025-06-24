@@ -145,7 +145,7 @@ const DoctorPatientResults = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>Hasta Tomografi Sonuçları</h1>
+        <h1>Hasta MR Sonuçları</h1>
       </div>
 
       <div className={styles.content}>
@@ -185,15 +185,15 @@ const DoctorPatientResults = () => {
         <div className={styles.resultsSection}>
           {selectedPatient ? (
             <>
-              <h2>Tomografi Sonuçları</h2>
+              <h2>MR Sonuçları</h2>
               {patientResults.length === 0 ? (
-                <p className={styles.noResults}>Bu hasta için henüz tomografi sonucu bulunmamaktadır.</p>
+                <p className={styles.noResults}>Bu hasta için henüz mr sonucu bulunmamaktadır.</p>
               ) : (
                 <div className={styles.resultsList}>
                   {patientResults.map((result) => (
                     <div key={result.xRayResultID} className={styles.resultCard}>
                       <div className={styles.resultHeader}>
-                        <h3>Tomografi #{result.xRayResultID}</h3>
+                        <h3>MR #{result.xRayResultID}</h3>
                         <p className={styles.resultDate}>{formatDate(result.createdDate)}</p>
                       </div>
                       <div className={styles.resultContent}>

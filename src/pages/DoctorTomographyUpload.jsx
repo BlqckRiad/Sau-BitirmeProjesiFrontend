@@ -32,7 +32,7 @@ const DoctorTomographyUpload = () => {
 
   const handleUpload = async () => {
     if (!selectedFile) {
-      setError('Lütfen bir tomografi görüntüsü seçin');
+      setError('Lütfen bir MR görüntüsü seçin');
       return;
     }
 
@@ -93,7 +93,7 @@ const DoctorTomographyUpload = () => {
     return (
       <div className={styles.loadingContainer}>
         <div className={styles.loadingSpinner}></div>
-        <p>Tomografi görüntüsü yükleniyor, lütfen bekleyin...</p>
+        <p>MR görüntüsü yükleniyor, lütfen bekleyin...</p>
       </div>
     );
   }
@@ -110,12 +110,12 @@ const DoctorTomographyUpload = () => {
   if (uploadSuccess && xrayResult) {
     return (
       <div className={styles.resultContainer}>
-        <h2>Tomografi Sonucu Başarıyla Kaydedildi</h2>
+        <h2>MR Sonucu Başarıyla Kaydedildi</h2>
         <div className={styles.resultDetails}>
           <p><strong>Hasta:</strong> {patientName}</p>
           <p><strong>Doktor:</strong> Dr. {user.name} {user.surName}</p>
           <p><strong>Kayıt Tarihi:</strong> {new Date(xrayResult.createdDate).toLocaleString('tr-TR')}</p>
-          <p><strong>Tomografi ID:</strong> {xrayResult.xRayResultID}</p>
+          <p><strong>MR ID:</strong> {xrayResult.xRayResultID}</p>
           <div className={styles.diagnosisSection}>
             <h3>Teşhis Sonuçları</h3>
             <p><strong>Başlık:</strong> {xrayResult.xRayTitle}</p>
@@ -123,7 +123,7 @@ const DoctorTomographyUpload = () => {
           </div>
           <img src={xrayResult.xRayNormalImageUrl} alt="Tomografi Görüntüsü" className={styles.resultImage} />
         </div>
-        <button onClick={() => navigate('/doctor-panel/tomography')}>Tomografi Listesine Dön</button>
+        <button onClick={() => navigate('/doctor-panel/tomography')}>MR Listesine Dön</button>
       </div>
     );
   }
@@ -131,7 +131,7 @@ const DoctorTomographyUpload = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>Tomografi Görüntüsü Yükle</h1>
+        <h1>MR Görüntüsü Yükle</h1>
         <p>Hasta: {patientName}</p>
       </div>
 
@@ -144,7 +144,7 @@ const DoctorTomographyUpload = () => {
             id="tomography-upload"
           />
           <label htmlFor="tomography-upload">
-            {selectedFile ? 'Dosya Seçildi' : 'Tomografi Görüntüsü Seç'}
+            {selectedFile ? 'Dosya Seçildi' : 'MR Görüntüsü Seç'}
           </label>
         </div>
 
