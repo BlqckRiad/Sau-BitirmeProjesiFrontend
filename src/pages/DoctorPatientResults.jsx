@@ -12,6 +12,7 @@ const DoctorPatientResults = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [patientDetails, setPatientDetails] = useState({});
+  const [selectedResultIndex, setSelectedResultIndex] = useState(null);
 
   useEffect(() => {
     if (!user) {
@@ -110,7 +111,24 @@ const DoctorPatientResults = () => {
 
   const handlePatientSelect = (patient) => {
     setSelectedPatient(patient);
+    setSelectedResultIndex(null);
     fetchPatientResults(patient.userID);
+  };
+
+  const handleResultSelect = (index) => {
+    setSelectedResultIndex(index);
+  };
+
+  const handlePrevious = () => {
+    if (selectedResultIndex !== null && selectedResultIndex > 0) {
+      setSelectedResultIndex(selectedResultIndex - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (selectedResultIndex !== null && selectedResultIndex < patientResults.length - 1) {
+      setSelectedResultIndex(selectedResultIndex + 1);
+    }
   };
 
   const formatDate = (dateString) => {
@@ -189,28 +207,93 @@ const DoctorPatientResults = () => {
               {patientResults.length === 0 ? (
                 <p className={styles.noResults}>Bu hasta için henüz diş sonucu bulunmamaktadır.</p>
               ) : (
-                <div className={styles.resultsList}>
-                  {patientResults.map((result) => (
-                    <div key={result.xRayResultID} className={styles.resultCard}>
-                      <div className={styles.resultHeader}>
-                        <h3>Diş #{result.xRayResultID}</h3>
-                        <p className={styles.resultDate}>{formatDate(result.createdDate)}</p>
-                      </div>
-                      <div className={styles.resultContent}>
-                        <div className={styles.resultImage}>
-                          <img src={result.xRayNormalImageUrl} alt="Tomografi Görüntüsü" />
+                <>
+                  {/* Sonuç Listesi */}
+                  <div className={styles.resultsList}>
+                    {patientResults.map((result, index) => (
+                      <div 
+                        key={result.xRayResultID} 
+                        className={`${styles.resultCard} ${selectedResultIndex === index ? styles.selected : ''}`}
+                        onClick={() => handleResultSelect(index)}
+                      >
+                        <div className={styles.resultHeader}>
+                          <h3>Diş #{result.xRayResultID}</h3>
+                          <p className={styles.resultDate}>{formatDate(result.createdDate)}</p>
                         </div>
-                        <div className={styles.resultDetails}>
+                        <div className={styles.resultContent}>
+                          <div className={styles.resultImage}>
+                            <img src={result.xRayTitle || result.xRayNormalImageUrl} alt="Diş Görüntüsü" />
+                          </div>
+                          <div className={styles.resultDetails}>
+                            <div className={styles.diagnosisSection}>
+                              <h4>Teşhis Sonuçları</h4>
+                              <p><strong>Açıklama:</strong> {result.xRayDescription}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Seçili Görüntü Detay Görünümü */}
+                  {selectedResultIndex !== null && patientResults[selectedResultIndex] && (
+                    <div className={styles.detailView}>
+                      <div className={styles.detailHeader}>
+                        <h3>Diş #{patientResults[selectedResultIndex].xRayResultID}</h3>
+                        <p className={styles.resultDate}>{formatDate(patientResults[selectedResultIndex].createdDate)}</p>
+                        <button 
+                          className={styles.closeButton}
+                          onClick={() => setSelectedResultIndex(null)}
+                        >
+                          ✕
+                        </button>
+                      </div>
+                      <div className={styles.detailContent}>
+                        <div className={styles.navigationButtons}>
+                          <button 
+                            onClick={handlePrevious}
+                            disabled={selectedResultIndex === 0}
+                            className={styles.navButton}
+                          >
+                            ← Önceki
+                          </button>
+                          <span className={styles.imageCounter}>
+                            {selectedResultIndex + 1} / {patientResults.length}
+                          </span>
+                          <button 
+                            onClick={handleNext}
+                            disabled={selectedResultIndex === patientResults.length - 1}
+                            className={styles.navButton}
+                          >
+                            Sonraki →
+                          </button>
+                        </div>
+                        <div className={styles.detailImage}>
+                          <img 
+                            src={patientResults[selectedResultIndex].xRayTitle || patientResults[selectedResultIndex].xRayNormalImageUrl} 
+                            alt="Diş Görüntüsü Detay" 
+                          />
+                        </div>
+                        <div className={styles.detailInfo}>
                           <div className={styles.diagnosisSection}>
                             <h4>Teşhis Sonuçları</h4>
-                            <p><strong>Başlık:</strong> {result.xRayTitle}</p>
-                            <p><strong>Açıklama:</strong> {result.xRayDescription}</p>
+                            <p><strong>Açıklama:</strong> {patientResults[selectedResultIndex].xRayDescription}</p>
+                            <p><strong>Görüntü URL:</strong> 
+                              <a 
+                                href={patientResults[selectedResultIndex].xRayTitle || patientResults[selectedResultIndex].xRayNormalImageUrl} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className={styles.urlLink}
+                              >
+                                {patientResults[selectedResultIndex].xRayTitle || patientResults[selectedResultIndex].xRayNormalImageUrl}
+                              </a>
+                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  )}
+                </>
               )}
             </>
           ) : (

@@ -76,24 +76,37 @@ const DoctorTomographyUpload = () => {
       const predictData = await predictResponse.json();
 
       // 3. XRay sonucunu kaydet (LastDisResult endpoint'ine)
+      const requestBody = {
+        UserID: parseInt(patientId),
+        DoctorID: user.userID,
+        XRayNormalImageID: imageData.imageID,
+        XRayNormalImageUrl: predictData.ImageUrl,
+        XRayTitle: predictData.ImageUrl,
+        XRayDescription: predictData.prediction
+      };
+
+      console.log('Request body:', requestBody);
+
       const xrayResponse = await fetch('https://bitirmeiys.enesozbuganli.com/api/XRayResult/LastDisResult', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
-        body: JSON.stringify({
-          userID: parseInt(patientId),
-          doctorID: user.userID,
-          xRayNormalImageID: imageData.imageID,
-          xRayNormalImageUrl: predictData.ImageUrl,
-          xRayTitle: predictData.ImageUrl,
-          xRayDescription: predictData.prediction
-        })
+        body: JSON.stringify(requestBody)
       });
 
       if (!xrayResponse.ok) {
-        throw new Error('Diş sonucu kaydedilirken bir hata oluştu');
+        const errorText = await xrayResponse.text();
+        let errorMessage = 'Diş sonucu kaydedilirken bir hata oluştu';
+        try {
+          const errorData = JSON.parse(errorText);
+          errorMessage = errorData.message || errorData.title || errorMessage;
+        } catch (e) {
+          errorMessage = errorText || errorMessage;
+        }
+        console.error('API Error:', errorText);
+        throw new Error(`${errorMessage} (Status: ${xrayResponse.status})`);
       }
 
       const xrayData = await xrayResponse.json();
@@ -102,7 +115,7 @@ const DoctorTomographyUpload = () => {
 
     } catch (error) {
       console.error('Yükleme hatası:', error);
-      setError(error.message);
+      setError(error.message || 'Bir hata oluştu. Lütfen tekrar deneyin.');
     } finally {
       setLoading(false);
     }
