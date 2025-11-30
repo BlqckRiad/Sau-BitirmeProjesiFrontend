@@ -40,7 +40,7 @@ const DoctorPanel = () => {
             onClick={() => navigate('/doctor-panel/tomography')}
           >
             <i className="fas fa-x-ray"></i>
-            MR Girişi
+            Diş Girişi
           </button>
           <button 
             className={styles.navItem}

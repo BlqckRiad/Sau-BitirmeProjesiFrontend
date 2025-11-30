@@ -32,7 +32,7 @@ const DoctorTomographyUpload = () => {
 
   const handleUpload = async () => {
     if (!selectedFile) {
-      setError('Lütfen bir MR görüntüsü seçin');
+      setError('Lütfen bir Diş görüntüsü seçin');
       return;
     }
 
@@ -58,23 +58,42 @@ const DoctorTomographyUpload = () => {
 
       const imageData = await imageResponse.json();
 
-      // 2. XRay sonucunu kaydet
-      const xrayResponse = await fetch('https://bitirmeiys.enesozbuganli.com/api/XRayResult/AddXRayResultWithOutFinaly', {
+      // 2. Prediction API'sine istek at
+      const predictResponse = await fetch('http://127.0.0.1:8000/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          url: imageData.imageUrl
+        })
+      });
+
+      if (!predictResponse.ok) {
+        throw new Error('Prediction işlemi sırasında bir hata oluştu');
+      }
+
+      const predictData = await predictResponse.json();
+
+      // 3. XRay sonucunu kaydet (LastDisResult endpoint'ine)
+      const xrayResponse = await fetch('https://bitirmeiys.enesozbuganli.com/api/XRayResult/LastDisResult', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify({
-          UserID: parseInt(patientId),
-          DoctorID: user.userID,
-          XRayNormalImageID: imageData.imageID,
-          XRayNormalImageUrl: imageData.imageUrl
+          userID: parseInt(patientId),
+          doctorID: user.userID,
+          xRayNormalImageID: imageData.imageID,
+          xRayNormalImageUrl: predictData.ImageUrl,
+          xRayTitle: predictData.ImageUrl,
+          xRayDescription: predictData.prediction
         })
       });
 
       if (!xrayResponse.ok) {
-        throw new Error('Tomografi sonucu kaydedilirken bir hata oluştu');
+        throw new Error('Diş sonucu kaydedilirken bir hata oluştu');
       }
 
       const xrayData = await xrayResponse.json();
@@ -93,7 +112,7 @@ const DoctorTomographyUpload = () => {
     return (
       <div className={styles.loadingContainer}>
         <div className={styles.loadingSpinner}></div>
-        <p>MR görüntüsü yükleniyor, lütfen bekleyin...</p>
+        <p>Diş görüntüsü yükleniyor ve analiz ediliyor, lütfen bekleyin...</p>
       </div>
     );
   }
@@ -110,12 +129,12 @@ const DoctorTomographyUpload = () => {
   if (uploadSuccess && xrayResult) {
     return (
       <div className={styles.resultContainer}>
-        <h2>MR Sonucu Başarıyla Kaydedildi</h2>
+        <h2>Diş Sonucu Başarıyla Kaydedildi</h2>
         <div className={styles.resultDetails}>
           <p><strong>Hasta:</strong> {patientName}</p>
           <p><strong>Doktor:</strong> Dr. {user.name} {user.surName}</p>
           <p><strong>Kayıt Tarihi:</strong> {new Date(xrayResult.createdDate).toLocaleString('tr-TR')}</p>
-          <p><strong>MR ID:</strong> {xrayResult.xRayResultID}</p>
+          <p><strong>Diş ID:</strong> {xrayResult.xRayResultID}</p>
           <div className={styles.diagnosisSection}>
             <h3>Teşhis Sonuçları</h3>
             <p><strong>Başlık:</strong> {xrayResult.xRayTitle}</p>
@@ -123,7 +142,7 @@ const DoctorTomographyUpload = () => {
           </div>
           <img src={xrayResult.xRayNormalImageUrl} alt="Tomografi Görüntüsü" className={styles.resultImage} />
         </div>
-        <button onClick={() => navigate('/doctor-panel/tomography')}>MR Listesine Dön</button>
+        <button onClick={() => navigate('/doctor-panel/tomography')}>Diş Listesine Dön</button>
       </div>
     );
   }
@@ -131,7 +150,7 @@ const DoctorTomographyUpload = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>MR Görüntüsü Yükle</h1>
+        <h1>Diş Görüntüsü Yükle</h1>
         <p>Hasta: {patientName}</p>
       </div>
 
@@ -144,7 +163,7 @@ const DoctorTomographyUpload = () => {
             id="tomography-upload"
           />
           <label htmlFor="tomography-upload">
-            {selectedFile ? 'Dosya Seçildi' : 'MR Görüntüsü Seç'}
+            {selectedFile ? 'Dosya Seçildi' : 'Diş Görüntüsü Seç'}
           </label>
         </div>
 

@@ -69,7 +69,7 @@ const Registration = () => {
     <div className={styles.registrationContainer}>
       <div className={styles.formHeader}>
         <div className={styles.logo}>
-          <h2>Beyin Tomografi Sistemi</h2>
+          <h2>Diş Tomografi Sistemi</h2>
         </div>
         <h3>Kayıt Ol</h3>
       </div>

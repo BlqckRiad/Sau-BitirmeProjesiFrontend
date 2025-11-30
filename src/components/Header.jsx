@@ -11,7 +11,7 @@ const Header = () => {
                 {/* Text and Profile Section */}
                 <h1 className={styles.title}>Muayene için Randevunuzu Şimdi Alın</h1>
                 <p className={styles.description}>
-                Şehirdeki en iyi beyin uzmanlarından randevunuzu alın. Güvenilir bir profesyonelle görüşerek sağlıklı bir zihin için ilk adımı atın!
+                Şehirdeki en iyi diş uzmanlarından randevunuzu alın. Güvenilir bir profesyonelle görüşerek sağlıklı bir zihin için ilk adımı atın!
             </p>
             
             <div className={styles.profileSection}>

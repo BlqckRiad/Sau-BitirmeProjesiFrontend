@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import Beyin from '../assets/Beyin.png'
+import Diş from '../assets/Beyin.png'
 import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
@@ -60,7 +60,7 @@ const Navbar = () => {
     <div className={styles.navbar}>
       {/* Logo Section */}
       <div className={styles.logo}>
-        <img onClick={() => { navigate('/'); closeMenu(); }} src={Beyin} alt='Beyin' />
+        <img onClick={() => { navigate('/'); closeMenu(); }} src={Diş} alt='Diş' />
         <a href='#'> Randevu Alma Sistemi </a>
       </div>
 

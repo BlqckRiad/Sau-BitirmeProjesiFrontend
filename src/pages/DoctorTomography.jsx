@@ -106,7 +106,7 @@ const DoctorTomography = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>MR Sonuç Girişi</h1>
+        <h1>Diş Sonuç Girişi</h1>
       </div>
 
       <div className={styles.content}>
@@ -150,7 +150,7 @@ const DoctorTomography = () => {
 
         {selectedPatient && (
           <div className={styles.tomographyForm}>
-            <h2>MR Sonuç Girişi</h2>
+            <h2>Diş Sonuç Girişi</h2>
             <form>
               {/* Tomografi form alanları buraya eklenecek */}
               <p>Seçilen hasta: {patientDetails[selectedPatient.userID]?.name} {patientDetails[selectedPatient.userID]?.surName}</p>
